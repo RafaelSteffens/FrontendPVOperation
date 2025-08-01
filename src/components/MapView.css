@@ -1,0 +1,22 @@
+.map-container {
+  height: 400px;
+  max-width: 1500px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
+  background: #f5f7fa;
+  border: 1px solid #e0e0e0;
+}
+
+.leaflet-container {
+  width: 10%;
+  height: 10%;
+  border-radius: 12px;
+}
+
+/* Ajuste do zoom e controles */
+.leaflet-control-zoom {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
