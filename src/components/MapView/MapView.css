@@ -1,0 +1,10 @@
+/* src/components/MapView/MapView.css */
+.map-container {
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  height: 55vh;
+  width: "100%"
+}
+

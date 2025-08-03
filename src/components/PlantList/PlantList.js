@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
 import "./PlantList.css";
-import MapView from "./MapView";
+import MapView from "../MapView/MapView";
+import { API_URL } from "../../config/api";
+
 
 const PlantList = () => {
+
   const [plants, setPlants] = useState([]);
   const [filters, setFilters] = useState({
     SigUF: "",
@@ -11,45 +14,50 @@ const PlantList = () => {
     NomTitularEmpreendimento: "",
   });
   const [totalFilters, setTotalFilters] = useState({ SigUF: [], NomMunicipio: [], SigAgente: [] });
+
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const perPage = 50;
 
-  const [coordenadasFiltradas, setCoordenadasFiltradas] = useState();
 
   const loadPlants = () => {
     const params = new URLSearchParams({ page, per_page: perPage });
     Object.entries(filters).forEach(([k, v]) => v && params.append(k, v));
 
-    fetch(`http://localhost:5000/api/usinas?${params}`)
+    fetch(`${API_URL}/api/usinas?${params}`)
       .then(res => res.json())
       .then(data => {
         setPlants(data.data || []);
         setTotalPages(data.pages || 1);
-        setCoordenadasFiltradas(data.coordenadasFiltradas || []);
       })
       .catch(err => console.error("Erro ao carregar usinas:", err));
   };
+
 
   const loadFilters = () => {
     const params = new URLSearchParams();
     if (filters.SigUF) params.append("SigUF", filters.SigUF);
     if (filters.NomMunicipio) params.append("NomMunicipio", filters.NomMunicipio);
 
-    fetch(`http://localhost:5000/api/usinas/filtros?${params}`)
+    fetch(`${API_URL}/api/usinas/filtros?${params}`)
       .then(res => res.json())
       .then(data => setTotalFilters(data))
-      .catch(err => console.error("Erro ao carregar filtros:", err));
+      .catch(error => console.error("Erro ao carregar filtros:", error));
   };
+
+
 
   useEffect(() => { loadPlants(); }, [filters, page]);
   useEffect(() => { loadFilters(); }, [filters.SigUF, filters.NomMunicipio]);
+
+
 
   const handleFilterChange = e => {
     setPage(1);
     const { name, value } = e.target;
     setFilters(prev => ({ ...prev, [name]: value, ...(name === "SigUF" ? { NomMunicipio: "", SigAgente: "" } : {}), ...(name === "NomMunicipio" ? { SigAgente: "" } : {}) }));
   };
+
 
   return (
     <div className="plant-list">
@@ -80,9 +88,11 @@ const PlantList = () => {
         />
       </div>
 
-      <div className="mapview"><MapView coordenadasFiltradas={coordenadasFiltradas}/></div>
+      <div className="mapview">
+        < MapView filters={filters} />
+      </div> 
 
-      {/* Tabela */}
+
       <div className="table-container">
         <table>
           <thead>

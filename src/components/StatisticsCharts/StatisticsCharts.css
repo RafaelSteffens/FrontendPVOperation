@@ -1,0 +1,48 @@
+:root {
+  --primary-bg: #1f2937;
+  --secondary-bg: #111827;
+  --primary-color: #4caf50;
+  --text-color: #f3f4f6;
+}
+
+.charts-container {
+  display: grid;
+  gap: 20px;
+  background: var(--primary-bg);
+  padding: 20px;
+  border-radius: 16px;
+  color: var(--text-color);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+}
+
+.chart-box {
+  background: var(--secondary-bg);
+  padding: 16px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+.chart-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.chart-subtitle {
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+.pie-charts {
+  display: grid;
+  gap: 16px;
+}
+
+@media (min-width: 768px) {
+  .pie-charts {
+    grid-template-columns: 1fr 1fr;
+  }
+}

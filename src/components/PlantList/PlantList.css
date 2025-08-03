@@ -17,11 +17,6 @@
   color: #f0fdf4;
 }
 
-/* .mapview {
-    display:flex;
-    align-items: center;
-} */
-
 .filters {
   display: flex;
   flex-wrap: wrap;
@@ -33,11 +28,8 @@
   padding: 10px 14px;
   border-radius: 10px;
   border: none;
-  /* background: #fc0dc810; */
   color: black;
   font-size: 14px;
-  backdrop-filter: blur(6px);
-  transition: all 0.3s ease;
 }
 
 .filters select:focus,
