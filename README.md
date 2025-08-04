@@ -1,70 +1,117 @@
-# Getting Started with Create React App
+# ⚡ Plataforma PVOperation
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<img src="https://plataforma.pvoperation.com/assets/images/logo/logo.png" alt="Logo PV" width="180" align="right" />
 
-## Available Scripts
+Bem-vindo à **PVOperation**, uma plataforma moderna para visualização e gestão de dados de energia solar, construída com **React** para garantir alta performance, responsividade e uma experiência de usuário fluida.  
 
-In the project directory, you can run:
+Este projeto foi desenvolvido com foco em **design futurista, performance e escalabilidade**, aplicando boas práticas de **UI/UX e clean code**.
 
-### `npm start`
+---
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## 📌 Índice
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- [⚙️ Tecnologias](#️-tecnologias)
+- [🚀 Como iniciar o projeto](#-como-iniciar-o-projeto)
+- [📦 Instalação de bibliotecas](#-instalação-de-bibliotecas)
+- [🌐 Scripts disponíveis](#-scripts-disponíveis)
+- [🛠️ Estrutura do projeto](#️-estrutura-do-projeto)
+- [🎨 Destaques de UI/UX](#-destaques-de-uiux)
+- [📌 Autor](#-autor)
 
-### `npm test`
+---
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## ⚙️ Tecnologias
 
-### `npm run build`
+- ⚛️ **React 20+**
+- 🎞 **Framer Motion** (animações fluidas)
+- 🎨 **CSS3 com Design Futurista**
+- 🔗 **React Router DOM**
+- 📡 **Integração com API Flask**
+- 📊 **React Icons** para ícones responsivos
+- 🔐 Boas práticas de **Clean Code** e **UI/UX**
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+---
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## 🚀 Como iniciar o projeto
+```bash
+git clone --recurse-submodules https://github.com/RafaelSteffens/PVOperation_Desafio.git
+cd PVOperation_Desafio
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+2️⃣ Suba os containers
+docker-compose up --build
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+3️⃣ Acesse no navegador
+Frontend → http://localhost:3000
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Ou se preferir acessar somente frontend
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+> ⚠️ Pré-requisitos:  
+> - **Node.js** v18+  
+> - **npm** ou **yarn** instalados
 
-## Learn More
+Clone o repositório e instale as dependências:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+# Clone o repositório
+git clone https://github.com/RafaelSteffens/FrontendPVOperation.git
 
-### Code Splitting
+# Entre na pasta
+cd SeuProjeto
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+# Instale as dependências
+npm install
+# ou
+yarn install
 
-### Analyzing the Bundle Size
+Inicie o projeto no modo desenvolvimento:
+npm start
+# ou
+yarn start
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+O projeto será aberto em:
+👉 http://localhost:3000
 
-### Making a Progressive Web App
+📦 Instalação de bibliotecas
+Caso precise instalar novas libs, utilize:
+# Exemplo: instalar o Framer Motion
+npm install framer-motion
+# ou
+yarn add framer-motion
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Outras libs usadas neste projeto:
+npm install react-icons react-router-dom
 
-### Advanced Configuration
+🌐 Scripts disponíveis
+Na raiz do projeto, você pode executar:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+npm start — roda a aplicação em modo desenvolvimento
 
-### Deployment
+npm run build — gera a versão de produção
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+npm test — executa os testes
 
-### `npm run build` fails to minify
+npm run eject — expõe a configuração do React (use com cuidado)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+🛠️ Estrutura do projeto
+src/
+│── components/       # Componentes reutilizáveis (Sidebar, Welcome, etc.)
+│── pages/            # Telas principais
+│── assets/           # Logos, imagens, ícones
+│── config/           # Configurações (ex: API_URL)
+│── styles/           # CSS global e customizado
+│── App.js            # Roteamento principal
+│── index.js          # Ponto de entrada React
+
+🎨 Destaques de UI/UX
+✨ Design Futurista com gradientes animados e efeitos visuais modernos
+⚡ Performance otimizada para carregamento rápido
+📱 Totalmente responsivo (desktop, tablet e mobile)
+🎯 Storytelling visual para engajar usuários e recrutadores
+🛡 Boas práticas de código para manutenção e escalabilidade
+
+📌 Autor
+Feito com 💚 por Rafael Steffens
+👉 LinkedIn | Portfólio | GitHub
+

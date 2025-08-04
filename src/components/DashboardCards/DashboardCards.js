@@ -2,9 +2,11 @@ import React, { useEffect, useState, useMemo } from "react";
 import { FaSolarPanel, FaBolt } from "react-icons/fa";
 import "./DashboardCards.css";
 import { API_URL } from "../../config/api";
+import FullScreenLoader from "../FullScreenLoader/FullScreenLoader"; 
 
 const DashboardCards = () => {
   const [stats, setStats] = useState({ por_estado: [], por_distribuidora: [] });
+  const [loading, setLoading] = useState(true); 
 
   useEffect(() => {
     const fetchData = async () => {
@@ -14,35 +16,25 @@ const DashboardCards = () => {
         setStats(data);
       } catch (err) {
         console.error("Erro ao carregar estatísticas:", err);
+      } finally {
+        setLoading(false); 
       }
     };
     fetchData();
   }, []);
 
-
-  // =============================================================================== FAZER ESTE CALCULO NO BACKEND ================================
-  const totalPotencia = useMemo(() => {
-    return [...stats.por_estado, ...stats.por_distribuidora]
-      .reduce((acc, item) => acc + (item.potencia_total || 0), 0);
-  }, [stats]);
-
-
-
   const renderCard = (item, type) => {
-    const percent = totalPotencia
-      ? ((item.potencia_total / totalPotencia) * 100).toFixed(1)
-      : 0;
-
     return (
       <div key={item._id} className={`dashboard-card ${type}`}>
-        {type === "green" ? <FaSolarPanel className="dashboard-icon" aria-label="Painel solar"/> : <FaBolt className="dashboard-icon" aria-label="Distribuidora"/>}
+        {type === "green" ? <FaSolarPanel className="dashboard-icon" aria-label="Painel solar" /> : <FaBolt className="dashboard-icon" aria-label="Distribuidora" />}
         <h3>{item._id || "Não informado"}</h3>
         <p className="valor">{item.potencia_total.toFixed(2)} kW</p>
-        <span>{percent}% do total</span>
+        <span>{item.percentual}% do total</span>
       </div>
     );
   };
 
+  if (loading) return <FullScreenLoader message="Carregando cards..." />;
 
   return (
     <div className="dashboard-cards">

@@ -50,11 +50,11 @@ useEffect(() => {
 
 
       const validPoints  = coordsArray
-        .filter(item => 
-          Array.isArray(item) && item.length === 2 &&
-          item.every(n => typeof n === "number" && !isNaN(n)) &&
-          item[0] >= -180 && item[0] <= 180 &&
-          item[1] >= -90 && item[1] <= 90
+      .filter(item => 
+        Array.isArray(item) && item.length === 2 &&
+        item.every(n => typeof n === "number" && !isNaN(n)) &&
+        item[0] >= -180 && item[0] <= 180 &&
+        item[1] >= -90 && item[1] <= 90
         ).map(item => [item[1], item[0]]); 
 
 
@@ -70,14 +70,14 @@ useEffect(() => {
         color: { r: 0.035, g: 0.302, b: 0.208, a: 1 },
         click: (e, point) => {
           L.popup()
-            .setLatLng(point) // point já é [lat, lon]
+            .setLatLng(point) 
             .openOn(mapRef.current);
         },
       });
     } catch (error ) {
       console.error("Erro no fetch:", error );
     } finally {
-      setIsLoading(false); // Desativa o loader ao finalizar
+      setIsLoading(false); 
     }
   };
 

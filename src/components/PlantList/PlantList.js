@@ -66,17 +66,17 @@ const PlantList = () => {
       <div className="filters">
         <select name="SigUF" value={filters.SigUF} onChange={handleFilterChange}>
           <option value="">Estado</option>
-          {totalFilters.SigUF.map(uf => <option key={uf} value={uf}>{uf}</option>)}
+          {totalFilters.SigUF?.map(uf => <option key={uf} value={uf}>{uf}</option>)}
         </select>
 
         <select name="NomMunicipio" value={filters.NomMunicipio} onChange={handleFilterChange} disabled={!filters.SigUF}>
           <option value="">Município</option>
-          {totalFilters.NomMunicipio.map(m => <option key={m} value={m}>{m}</option>)}
+          {totalFilters.NomMunicipio?.map(m => <option key={m} value={m}>{m}</option>)}
         </select>
 
         <select name="SigAgente" value={filters.SigAgente} onChange={handleFilterChange} >
           <option value="">Distribuidora</option>
-          {totalFilters.SigAgente.map(a => <option key={a} value={a}>{a}</option>)}
+          {totalFilters.SigAgente?.map(a => <option key={a} value={a}>{a}</option>)}
         </select>
 
         <input
