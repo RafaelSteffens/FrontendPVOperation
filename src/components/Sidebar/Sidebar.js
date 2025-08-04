@@ -19,14 +19,13 @@ const Sidebar = () => {
     { icon: <FaChartPie />, label: "Dashboard", path: "/dashboards" },
     { icon: <FaBolt />, label: "Painel de Operação", path: "/plantlist" },
     { icon: <FaClipboardList />, label: "Painel de gráficos", path: "/graficos" },
-    { icon: <FaMapMarkedAlt />, label: "Mapa de Operação", path: "/mapview" },
   ];
 
   const handleDatabaseUpdate  = async () => {
     try {
       setIsLoading(true);
       
-      const response = await fetch(`${API_URL}/api/searchAneelBD`);
+      const response = await fetch(`${API_URL}/api/aneel/import`);
       if (!response.ok) {
         throw new Error("Falha na requisição");
       }    
