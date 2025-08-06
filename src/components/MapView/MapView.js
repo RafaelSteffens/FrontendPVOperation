@@ -24,65 +24,65 @@ const MapView = ({ filters }) => {
     }
   }, []);
 
-useEffect(() => {
-  if (!mapRef.current) return;
+  useEffect(() => {
+    if (!mapRef.current) return;
 
-  const fetchCoordinates = async () => {
-    try {
-      setIsLoading(true);
-      
-      const queryParams = new URLSearchParams();
-      if (filters?.SigUF) queryParams.append("SigUF", filters.SigUF);
-      if (filters?.NomMunicipio) queryParams.append("NomMunicipio", filters.NomMunicipio);
-      if (filters?.SigAgente) queryParams.append("SigAgente", filters.SigAgente);
-      if (filters?.NomTitularEmpreendimento) queryParams.append("NomTitularEmpreendimento", filters.NomTitularEmpreendimento);
+    const fetchCoordinates = async () => {
+      try {
+        setIsLoading(true);
+        
+        const queryParams = new URLSearchParams();
+        if (filters?.SigUF) queryParams.append("SigUF", filters.SigUF);
+        if (filters?.NomMunicipio) queryParams.append("NomMunicipio", filters.NomMunicipio);
+        if (filters?.SigAgente) queryParams.append("SigAgente", filters.SigAgente);
+        if (filters?.NomTitularEmpreendimento) queryParams.append("NomTitularEmpreendimento", filters.NomTitularEmpreendimento);
 
-      const url = `${API_URL}/api/CoordUsinas?${queryParams.toString()}`;
-      const response = await fetch(url);
-      if (!response.ok) throw new Error("Erro ao buscar coordenadas");
+        const url = `${API_URL}/api/CoordUsinas?${queryParams.toString()}`;
+        const response = await fetch(url);
+        if (!response.ok) throw new Error("Erro ao buscar coordenadas");
 
-      const coordsArray = await response.json();
+        const coordsArray = await response.json();
 
-      if (!Array.isArray(coordsArray) || coordsArray.length === 0) {
-        console.error("Nenhuma coordenada válida recebida");
-        return;
+        if (!Array.isArray(coordsArray) || coordsArray.length === 0) {
+          console.error("Nenhuma coordenada válida recebida");
+          return;
+        }
+
+
+        const validPoints  = coordsArray
+        .filter(item => 
+          Array.isArray(item) && item.length === 2 &&
+          item.every(n => typeof n === "number" && !isNaN(n)) &&
+          item[0] >= -180 && item[0] <= 180 &&
+          item[1] >= -90 && item[1] <= 90
+          ).map(item => [item[1], item[0]]); 
+
+
+        if (glifyLayerRef.current) {
+          glifyLayerRef.current.remove();
+          glifyLayerRef.current = null;
+        }
+
+        glifyLayerRef.current = L.glify.points({
+          map: mapRef.current,
+          data: validPoints ,
+          size: 10,
+          color: { r: 0.035, g: 0.302, b: 0.208, a: 1 },
+          click: (e, point) => {
+            L.popup()
+              .setLatLng(point) 
+              .openOn(mapRef.current);
+          },
+        });
+      } catch (error ) {
+        console.error("Erro no fetch:", error );
+      } finally {
+        setIsLoading(false); 
       }
+    };
 
-
-      const validPoints  = coordsArray
-      .filter(item => 
-        Array.isArray(item) && item.length === 2 &&
-        item.every(n => typeof n === "number" && !isNaN(n)) &&
-        item[0] >= -180 && item[0] <= 180 &&
-        item[1] >= -90 && item[1] <= 90
-        ).map(item => [item[1], item[0]]); 
-
-
-      if (glifyLayerRef.current) {
-        glifyLayerRef.current.remove();
-        glifyLayerRef.current = null;
-      }
-
-      glifyLayerRef.current = L.glify.points({
-        map: mapRef.current,
-        data: validPoints ,
-        size: 10,
-        color: { r: 0.035, g: 0.302, b: 0.208, a: 1 },
-        click: (e, point) => {
-          L.popup()
-            .setLatLng(point) 
-            .openOn(mapRef.current);
-        },
-      });
-    } catch (error ) {
-      console.error("Erro no fetch:", error );
-    } finally {
-      setIsLoading(false); 
-    }
-  };
-
-  fetchCoordinates();
-}, [filters]);
+    fetchCoordinates();
+  }, [filters]);
 
 
   return (

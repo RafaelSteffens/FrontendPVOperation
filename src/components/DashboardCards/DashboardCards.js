@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useMemo } from "react";
+import React, { useEffect, useState } from "react";
 import { FaSolarPanel, FaBolt } from "react-icons/fa";
 import "./DashboardCards.css";
 import { API_URL } from "../../config/api";
