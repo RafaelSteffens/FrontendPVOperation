@@ -6,11 +6,10 @@ import Sidebar from "./components/Sidebar/Sidebar";
 import Header from "./components/Header/Header";
 import Welcome from "./components/Welcome/Welcome";
 
+
+import PlantList from "./components/PlantList/PlantList";
 const DashboardCards = lazy(() => import("./components/DashboardCards/DashboardCards"));
 const StatisticsCharts = lazy(() => import("./components/StatisticsCharts/StatisticsCharts"));
-const PlantList = lazy(() => import("./components/PlantList/PlantList"));
-
-
 
 
 function App() {

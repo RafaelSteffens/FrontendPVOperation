@@ -2,7 +2,6 @@ import "./Sidebar.css";
 import React, { useState } from "react";
 import {
   FaChartPie,
-  FaMapMarkedAlt,
   FaBolt,
   FaClipboardList,
   FaSync

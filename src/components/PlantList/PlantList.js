@@ -22,7 +22,7 @@ const PlantList = () => {
 
   const loadPlants = () => {
     const params = new URLSearchParams({ page, per_page: perPage });
-    Object.entries(filters).forEach(([k, v]) => v && params.append(k, v));
+    Object.entries(filters).forEach(([chave, valor]) => valor && params.append(chave, valor));
 
     fetch(`${API_URL}/api/usinas?${params}`)
       .then(res => res.json())
@@ -53,7 +53,7 @@ const PlantList = () => {
 
 
   const handleFilterChange = e => {
-    setPage(1);
+    setPage(1); 
     const { name, value } = e.target;
     setFilters(prev => ({ ...prev, [name]: value, ...(name === "SigUF" ? { NomMunicipio: "", SigAgente: "" } : {}), ...(name === "NomMunicipio" ? { SigAgente: "" } : {}) }));
   };

@@ -44,15 +44,6 @@ const StatisticsCharts = () => {
       .slice(0, 10);
   }, [stats]);
 
-  const summarizedDistributors = useMemo(() => {
-    if (!stats?.distributors) return [];
-    const sorted = stats.distributors.slice().sort((a, b) => b.potencia_total - a.potencia_total);
-    const top5 = sorted.slice(0, 5);
-    const othersTotal = sorted.slice(5).reduce((sum, d) => sum + d.potencia_total, 0);
-    return othersTotal > 0
-      ? [...top5, { _id: "Outras", potencia_total: othersTotal }]
-      : top5;
-  }, [stats]);
 
   if (loading) return <FullScreenLoader message="Carregando estatísticas..." />;
 
